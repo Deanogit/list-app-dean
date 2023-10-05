@@ -22,30 +22,6 @@
           List App
         </h1>
       </div>
-      <!-- Input form -->
-      <form id="item-form" class="flex flex-col mb-5">
-        <!-- Text Input -->
-        <div class="form-control mb-6">
-          <input
-            id="item-input"
-            name="item"
-            type="text"
-            placeholder="Enter Item"
-            class="form-input w-full px-8 py-3 bg-slate-50 rounded-md outline-none shadow-lg"
-          />
-        </div>
-        <!-- Add Item Button -->
-        <div class="form-control">
-          <button
-            type="submit"
-            class="btn flex items-center justify-center gap-2 py-2 px-8 bg-slate-700 rounded-md text-slate-50 tracking-widest font-semibold text-lg shadow-lg hover:bg-slate-600 duration-150"
-          >
-            <ion-icon name="add-outline" class="w-8 h-8"></ion-icon>
-
-            Add Item
-          </button>
-        </div>
-      </form>
       <!-- Filter -->
       <div class="filter mb-6">
         <input
@@ -55,6 +31,7 @@
           placeholder="Filter Items"
         />
       </div>
+
       <!-- Item List -->
       <ul id="item-list" class="items flex flex-col gap-3 mb-6">
         <li
@@ -98,6 +75,32 @@
           </button>
         </li>
       </ul>
+
+      <!-- Input form -->
+      <form id="item-form" class="flex mb-5 justify-between items-center mb-6">
+        <!-- Text Input -->
+        <div class="form-control">
+          <input
+            id="item-input"
+            name="item"
+            type="text"
+            placeholder="Enter Item"
+            class="form-input w-full px-9 py-3 bg-slate-50 rounded-md outline-none shadow-lg text-xl tracking-wider leading-10 font-semibold text-slate-600 border border-slate-400 rounded-r-none"
+          />
+        </div>
+        <!-- Add Item Button -->
+        <div class="form-control">
+          <button
+            type="submit"
+            class="btn flex items-center justify-center gap-1 py-3 px-2 bg-slate-700 rounded-md text-slate-50 tracking-widest font-semibold text-xl shadow-lg hover:bg-slate-600 duration-150 leading-10 rounded-l-none"
+          >
+            <ion-icon name="add-outline" class="w-8 h-8"></ion-icon>
+
+            Add
+          </button>
+        </div>
+      </form>
+
       <!-- Clear Button -->
       <button
         id="clear"
