@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>List App</title>
+  </head>
+  <body
+    class="bg-gradient-to-br from-slate-100 to-slate-400 min-h-screen text-slate-700"
+  >
+    <!-- Container -->
+    <div
+      class="container mx-auto min-w-[250px] max-w-[450px] p-10 m-10 md:border-4 md:border-slate-50 rounded-md md:shadow-lg"
+    >
+      <!-- Heading -->
+      <div class="flex gap-3 items-center mb-6">
+        <div
+          class="w-8 h-8 bg-gradient-to-br from-slate-600 to-slate-700 rounded-full"
+        ></div>
+        <h1 class="text-3xl tracking-tight text-slate-800 font-semibold">
+          List App
+        </h1>
+      </div>
+      <!-- Input form -->
+      <form id="item-form" class="flex flex-col mb-5">
+        <!-- Text Input -->
+        <div class="form-control mb-6">
+          <input
+            id="item-input"
+            name="item"
+            type="text"
+            placeholder="Enter Item"
+            class="form-input w-full px-8 py-3 bg-slate-50 rounded-md outline-none shadow-lg"
+          />
+        </div>
+        <!-- Add Item Button -->
+        <div class="form-control">
+          <button
+            type="submit"
+            class="btn flex items-center justify-center gap-2 py-2 px-8 bg-slate-700 rounded-md text-slate-50 tracking-widest font-semibold text-lg shadow-lg hover:bg-slate-600 duration-150"
+          >
+            <ion-icon name="add-outline" class="w-8 h-8"></ion-icon>
+
+            Add Item
+          </button>
+        </div>
+      </form>
+      <!-- Filter -->
+      <div class="filter mb-6">
+        <input
+          type="text"
+          class="form-input-filter bg-transparent text-lg w-full border-b-2 border-slate-400 py-2 outline-none text-slate-600"
+          id="filter"
+          placeholder="Filter Items"
+        />
+      </div>
+      <!-- Item List -->
+      <ul id="item-list" class="items flex flex-col gap-3 mb-6">
+        <li
+          class="flex justify-between items-center py-3 px-4 text-xl font-semibold tracking-wide border border-slate-400 bg-slate-100 rounded-md drop-shadow-md"
+        >
+          Garlic
+          <button class="flex">
+            <ion-icon name="close" class="w-7 h-7"></ion-icon>
+          </button>
+        </li>
+        <li
+          class="flex justify-between items-center py-3 px-4 text-xl font-semibold tracking-wide border border-slate-400 bg-slate-100 rounded-md drop-shadow-md"
+        >
+          Noodles
+          <button class="flex">
+            <ion-icon name="close" class="w-7 h-7"></ion-icon>
+          </button>
+        </li>
+        <li
+          class="flex justify-between items-center py-3 px-4 text-xl font-semibold tracking-wide border border-slate-400 bg-slate-100 rounded-md drop-shadow-md"
+        >
+          Ginger
+          <button class="flex">
+            <ion-icon name="close" class="w-7 h-7"></ion-icon>
+          </button>
+        </li>
+        <li
+          class="flex justify-between items-center py-3 px-4 text-xl font-semibold tracking-wide border border-slate-400 bg-slate-100 rounded-md drop-shadow-md"
+        >
+          Tofu
+          <button class="flex">
+            <ion-icon name="close" class="w-7 h-7"></ion-icon>
+          </button>
+        </li>
+        <li
+          class="flex justify-between items-center py-3 px-4 text-xl font-semibold tracking-wide border border-slate-400 bg-slate-100 rounded-md drop-shadow-md"
+        >
+          Stock
+          <button class="flex">
+            <ion-icon name="close" class="w-7 h-7"></ion-icon>
+          </button>
+        </li>
+      </ul>
+      <!-- Clear Button -->
+      <button
+        id="clear"
+        class="btn-clear w-full border-2 border-slate-400 py-3 rounded-sm shadow-sm bg-transparent text-lg tracking-wide font-semibold text-slate-500 hover:bg-slate-200 hover:border-transparent duration-200"
+      >
+        Clear All
+      </button>
+    </div>
+    <script
+      type="module"
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"
+    ></script>
+    <script
+      nomodule
+      src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
+    ></script>
+
+    <!-- For UX UI the input form and Add Item button should always be at the end of the list! Where the action is going to take place! But for now can just get this layout working -->
+  </body>
+</html>
