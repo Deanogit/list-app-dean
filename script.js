@@ -10,31 +10,54 @@ itemInput.addEventListener('input', (e) => {
   e.preventDefault();
   console.log(e.target.value);
 });
+
 addBtn.addEventListener('click', (e) => {
   e.preventDefault();
   console.log('Add');
+
+  newLi('test');
 });
 
 /////////////////////////////////////////////////////////
 // // 1. Add Items to the list via forms
+const newLi = function (itemName) {
+  // create a new list item
+  const li = document.createElement('li');
+  li.classList =
+    'flex justify-between items-center py-3 px-4 text-xl font-semibold tracking-wide border border-slate-400 bg-slate-100 rounded-md drop-shadow-md';
+  li.textContent = `${itemName}`;
 
-// create a new list item
-// create a new button
-// create a new ion-icon
+  // create a new button
+  const button = document.createElement('button');
+  button.classList = 'flex';
 
-// append icon to button
-// append button to li
-// append li to ul
+  // create a new ion-icon
+  const icon = document.createElement('ion-icon');
+  icon.classList = 'w-7 h-7';
+  icon.name = 'close';
+
+  // append icon to button
+  button.appendChild(icon);
+  // append button to li
+  li.appendChild(button);
+  // append li to ul
+
+  ul.appendChild(li);
+};
 
 /////////////////////////////////////////////////////////
 // // 2. Remove li items when close btn clicks
 // // Kind of works for removing the li items when close btn is clicked!
-closeBtns.forEach((close) => {
-  close.addEventListener('click', (e) => {
-    console.log('Close!', e.target, e.target.parentElement.parentElement);
-    e.target.parentElement.parentElement.remove();
+
+closeBtns.forEach((btn) => {
+  btn.addEventListener('click', (e) => {
+    if (e.target) closeLiBtn(e);
   });
 });
+
+const closeLiBtn = function (e) {
+  e.target.parentElement.parentElement.remove();
+};
 
 /////////////////////////////////////////////////////////
 // // 3. Clear all items with the "clear" button
@@ -75,6 +98,16 @@ function removeAll() {
   const all = document.querySelectorAll('li');
   all.forEach((item) => {
     item.remove();
+  });
+}
+
+function removeEach() {
+  const closeBtns = document.querySelectorAll('button ion-icon[name="close"]');
+  closeBtns.forEach((close) => {
+    if (close.target === btn.target) {
+      btn.remove();
+      return;
+    }
   });
 }
 
