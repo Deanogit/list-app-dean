@@ -31,6 +31,10 @@ function addItem(e) {
 
   // Append li to dom
   itemList.appendChild(li);
+
+  //   clear the item input field
+  // NB: clear the document.itemInput not the newItem variable!!
+  itemInput.value = '';
 }
 
 // // Global reusable functions
