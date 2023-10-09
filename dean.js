@@ -1,7 +1,10 @@
 const itemForm = document.querySelector('#item-form');
 const itemInput = document.querySelector('#item-input');
 const itemList = document.querySelector('#item-list');
+const clearBtn = document.querySelector('#clear');
 
+/////////////////////////////////////////////////////////
+// // 1. Add Items to the list via form input
 function addItem(e) {
   e.preventDefault();
 
@@ -37,6 +40,27 @@ function addItem(e) {
   itemInput.value = '';
 }
 
+/////////////////////////////////////////////////////////
+// // 2. Remove li items when close btn clicks
+// // Tip: use event delegation, put the event on the itemList
+function removeItem(e) {
+  if (e.target.parentElement.classList.contains('remove-item')) {
+    console.log('click');
+    // so how do I get the li item now, loop through the ul..? If ul[i] === e.target.parentElement.classList.contains('remove-item) then {ul[i]remove()}
+    // Do i need a new variable?
+    // Nah just use parentElement.parentElement.remove() like I did initially :)
+    e.target.parentElement.parentElement.remove();
+  }
+}
+
+///////////////////////// 2. Continued, removeAllItems()
+// // checks if itemList has a first child, if it does, remove the firstchild, repeat until there are no more firstChilds
+function removeAllItems() {
+  while (itemList.firstChild) {
+    itemList.removeChild(itemList.firstChild);
+  }
+}
+
 // // Global reusable functions
 
 // createButton(classes)
@@ -49,3 +73,5 @@ function createButton(classes) {
 
 // // Event Listener
 itemForm.addEventListener('submit', addItem);
+itemList.addEventListener('click', removeItem);
+clearBtn.addEventListener('click', removeAllItems);
