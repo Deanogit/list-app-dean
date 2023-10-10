@@ -3,7 +3,7 @@ const itemForm = document.querySelector('#item-form');
 const itemInput = document.querySelector('#item-input');
 const itemList = document.querySelector('#item-list');
 const clearBtn = document.querySelector('#clear');
-const filter = document.querySelector('.filter');
+const filterInput = document.querySelector('#filter');
 // // this cant be here, we need it defined inside the function, not in the global scope, so it checks how many li(s) there are inside the ul when the function is called!
 // const items = itemList.querySelectorAll('li');
 
@@ -81,6 +81,33 @@ function removeAllItems() {
 
 // Create a function to check the UI, this can be called at specific times...
 
+/////////////////////////////////////////////////////////
+// // 4. Filter the items by typing in the filter field
+// // Build something that checks when something entered into the filter input,  if the filter input with the li(s)
+
+function filterItems(e) {
+  const text = e.target.value.toLowerCase();
+  console.log(text);
+  // check if input matches li items
+  const items = document.querySelectorAll('li');
+
+  items.forEach((item) => {
+    const itemName = item.firstChild.textContent.toLowerCase();
+    console.log(itemName);
+    if (itemName.indexOf(text) != -1) {
+      item.style.display = 'flex';
+    } else {
+      item.style.display = 'none';
+    }
+
+    // if (item.textContent === text) {
+    //   console.log('match!');
+
+    //   // So i can get a match if the textContent matches the entire text word, so how do I loop through the
+    // }
+  });
+}
+
 // // Global reusable functions
 
 // createButton(classes)
@@ -108,5 +135,12 @@ itemForm.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
 clearBtn.addEventListener('click', removeAllItems);
 
+// // 4. listen for keydown events in filter
+filterInput.addEventListener('input', filterItems);
+
 //  // Global Scope, runs on load:
 checkUI();
+
+// // 4. call global function
+// This isnt necessary, the eventlistener will fire anytime something is input into the filterInput
+// whichKey();
