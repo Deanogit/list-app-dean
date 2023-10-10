@@ -1,7 +1,11 @@
+// // These are in the global scope
 const itemForm = document.querySelector('#item-form');
 const itemInput = document.querySelector('#item-input');
 const itemList = document.querySelector('#item-list');
 const clearBtn = document.querySelector('#clear');
+const filter = document.querySelector('.filter');
+// // this cant be here, we need it defined inside the function, not in the global scope, so it checks how many li(s) there are inside the ul when the function is called!
+// const items = itemList.querySelectorAll('li');
 
 /////////////////////////////////////////////////////////
 // // 1. Add Items to the list via form input
@@ -32,8 +36,11 @@ function addItem(e) {
   //   Append button to li
   li.appendChild(button);
 
-  // Append li to dom
+  // Append li to DOM
   itemList.appendChild(li);
+
+  // Check if there are any li(s)
+  checkUI();
 
   //   clear the item input field
   // NB: clear the document.itemInput not the newItem variable!!
@@ -45,21 +52,34 @@ function addItem(e) {
 // // Tip: use event delegation, put the event on the itemList
 function removeItem(e) {
   if (e.target.parentElement.classList.contains('remove-item')) {
-    console.log('click');
+    // console.log('click');
     // so how do I get the li item now, loop through the ul..? If ul[i] === e.target.parentElement.classList.contains('remove-item) then {ul[i]remove()}
     // Do i need a new variable?
     // Nah just use parentElement.parentElement.remove() like I did initially :)
-    e.target.parentElement.parentElement.remove();
+    if (confirm('Are you sure?')) {
+      e.target.parentElement.parentElement.remove();
+      checkUI();
+    }
   }
 }
 
 ///////////////////////// 2. Continued, removeAllItems()
 // // checks if itemList has a first child, if it does, remove the firstchild, repeat until there are no more firstChilds
 function removeAllItems() {
-  while (itemList.firstChild) {
-    itemList.removeChild(itemList.firstChild);
+  if (confirm('Delete all items?')) {
+    while (itemList.firstChild) {
+      itemList.removeChild(itemList.firstChild);
+    }
+    checkUI();
   }
 }
+
+/////////////////////////////////////////////////////
+// // 3. If there are no items in the list, remove clear all btn and filter items
+
+// // this could be done when the page loads (remove all the items in the HTML) check if ul.childElement is NOT true, if NOT true, hide filter and clear all btn
+
+// Create a function to check the UI, this can be called at specific times...
 
 // // Global reusable functions
 
@@ -71,7 +91,22 @@ function createButton(classes) {
   return button;
 }
 
+function checkUI() {
+  const items = itemList.querySelectorAll('li');
+
+  // console.log(items);
+  if (items.length === 0) {
+    clearBtn.style.display = 'none';
+    filter.style.display = 'none';
+  } else {
+    clearBtn.style.display = 'block';
+    filter.style.display = 'block';
+  }
+}
 // // Event Listener
 itemForm.addEventListener('submit', addItem);
 itemList.addEventListener('click', removeItem);
 clearBtn.addEventListener('click', removeAllItems);
+
+//  // Global Scope, runs on load:
+checkUI();
