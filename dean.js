@@ -4,8 +4,13 @@ const itemInput = document.querySelector('#item-input');
 const itemList = document.querySelector('#item-list');
 const clearBtn = document.querySelector('#clear');
 const filterInput = document.querySelector('#filter');
+const formBtn = itemForm.querySelector('button');
+
 // // this cant be here, we need it defined inside the function, not in the global scope, so it checks how many li(s) there are inside the ul when the function is called!
 // const items = itemList.querySelectorAll('li');
+
+// // Create a reassignable variable for the edit state
+let isEditMode = false;
 
 /////////////////////////////////////////////////////////
 // // // When page loads, get the items from localStorage
@@ -32,6 +37,16 @@ function onAddItemSubmit(e) {
   if (newItem === '') {
     alert('Please add an item');
     return;
+  }
+
+  // Check isEditMode
+  if (isEditMode) {
+    const itemToEdit = itemList.querySelector('.edit-mode');
+
+    removeItemFromStorage(itemToEdit.textContent);
+    itemToEdit.classList.remove('edit-mode');
+    itemToEdit.remove();
+    isEditMode = false;
   }
 
   // // create li has been moved to addItemToDOM() // //
@@ -73,6 +88,30 @@ function onClickItem(e) {
   // Check what was clicked on, button or list content
   if (e.target.parentElement.classList.contains('remove-item')) {
     removeItem(e.target.parentElement.parentElement);
+  } else {
+    setItemToEdit(e.target);
+  }
+}
+
+function setItemToEdit(item) {
+  // Check it is the list item and not ul
+  if (item.parentElement.id === 'item-list') {
+    isEditMode = true;
+
+    itemList
+      .querySelectorAll('li')
+      .forEach(
+        (item) => (
+          item.classList.remove('edit-mode'),
+          (item.style.backgroundColor = 'rgb(241 245 249 )')
+        )
+      );
+    item.style.backgroundColor = '#9ca3af';
+    formBtn.innerHTML =
+      '<ion-icon name="pencil-outline" class="w-8 h-8"></ion-icon>Edit';
+    formBtn.style.backgroundColor = '#9ca3af';
+    itemInput.value = item.textContent;
+    item.classList.add('edit-mode');
   }
 }
 
@@ -204,6 +243,8 @@ function getItemsFromStorage() {
 }
 
 function checkUI() {
+  itemInput.value = '';
+
   const items = itemList.querySelectorAll('li');
 
   // console.log(items);
@@ -214,6 +255,12 @@ function checkUI() {
     clearBtn.style.display = 'block';
     filter.style.display = 'block';
   }
+
+  formBtn.innerHTML =
+    '<ion-icon name="add-outline" class="w-8 h-8"></ion-icon>Add';
+  formBtn.style.backgroundColor = 'rgb(51 65 85)';
+
+  isEditMode = false;
 }
 
 // // 4. call global function
